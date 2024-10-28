@@ -35,10 +35,11 @@ component restpath="/users"  rest="true" {
             return {"message": "Wrong password"};
         }
 
-
+        
         var jwtClient = new lib.JsonWebTokens().createClient( "HS256", "SUPER SECRET STUFF LOL" );
         var jwtToken = jwtClient.encode( {"username": user["username"]} );
-
+        
+        cfheader(statusCode="200", statusText="OK");
         return {"access_token": jwtToken};
 
     }
